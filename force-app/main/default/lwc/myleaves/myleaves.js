@@ -12,14 +12,14 @@ const COLUMNS = [
     { label: 'Status', fieldName: 'Status__c', cellAttributes: { class: { fieldName: 'cellClass' } } },
     { label: 'Manager Comment', fieldName: 'Manager_Comment__c', cellAttributes: { class: { fieldName: 'cellClass' } } },
     {
-        type: "button", typeAttributes: {
+        type: "button",typeAttributes: {
             label: 'Edit',
             name: 'Edit',
             title: 'Edit',
             value: 'edit',
             disabled: { fieldName: 'isEditDisabled' }
         }, cellAttributes: { class: { fieldName: 'cellClass' } }
-    }
+    } 
 ];
 export default class MyLeaves extends LightningElement {
     columns = COLUMNS;
@@ -61,6 +61,7 @@ export default class MyLeaves extends LightningElement {
         this.showModalPopup = true;
         this.recordId = event.detail.row.Id;
     }
+    
 
     successHandler(event) {
         this.showModalPopup = false;

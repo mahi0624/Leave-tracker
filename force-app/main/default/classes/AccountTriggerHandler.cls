@@ -62,4 +62,28 @@ public class AccountTriggerHandler {
             insert OPPlist;
         }
     }
-}
+    public static void preventdelifCasesforacc(List<Account> newList){
+        List<Account> acclist=[Select Id,(Select Id from Cases) From Account];
+        for(Account acc:acclist){
+            if(acc.Cases.Size()>0){
+                acc.addError('You can not delete account where cases are available');
+            }
+        }
+    }
+    public static void ChangeConowner(List<Account> acclist,Map<Id,Account> oldmap,Map<Id,Account> newmap){
+        Set<Id> accids=new Set<Id>();
+        for(Account acc:acclist){
+            if(acc.OwnerId!=oldmap.get(acc.Id).OwnerId){
+                accids.add(acc.Id);
+            }
+        }
+        List<Contact> conlist=[Select id,OwnerId,AccountId from Contact where AccountId IN:accids];
+        for(Contact con:conlist){
+            con.OwnerId=newmap.get(con.AccountId).OwnerId;
+        }
+        if(conlist.size()>0){
+            update conlist;
+        }
+        
+    }
+}   

@@ -2,10 +2,10 @@
     <lightning-card>
         <lightning-tabset>
             <lightning-tab title="My Leaves" label="My Leaves">
-                <c-myleaves></c-myleaves>
+                <c-myleaves onrefreshleaverequests={refreshLeaveReqeuestHandler}></c-myleaves>
             </lightning-tab>
             <lightning-tab title="Leave Requests" label="Leave Requests">
-                <c-leaverequests></c-leaverequests>
+                <c-leaverequests lwc:ref="myLeavesComp" ></c-leaverequests>
             </lightning-tab>
         </lightning-tabset>
     </lightning-card>
